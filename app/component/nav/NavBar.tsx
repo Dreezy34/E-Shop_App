@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className="py-4 border-b-[1px">
         <Container>
           <div className="flex items-center justify-between gap-3 md:gap-0">
-            <a href="/" className={`${redressed.className} font-bold text-2x1`}>
+            <a href="/" className={`${redressed.className} font-bold text-2xl`}>
               E-Shop
             </a>{" "}
             <div className="hidden md:block">Search bar</div>

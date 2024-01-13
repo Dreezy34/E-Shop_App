@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="bg-slate-700 text-slate-200 text-sm mt-16">
       <Container>
-        <div className="flex  md:flex-row justify-between pt-16 pb-8">
+        <div className="flex  md:flex-row justify-between pt-14 pb-8">
           <FooterList>
             <h3 className="text-base font-bold mb-2">Shop Categories</h3>
             <a href="#">Laptops</a>
@@ -25,7 +25,7 @@ const Footer = () => {
             <a href="#">Contact Us</a>
             <a href="#">Shipping Policy</a>
             <a href="#">Return & Exchanges</a>
-            <a href="#">Watches</a>
+            
             <a href="#">FAQ</a>
           </FooterList>
           <FooterList>
@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
           <FooterList>
             <h3 className="text-base font-bold mb-2">Follow Us</h3>
-            <div className="flex gap-2"></div>
+            <div className="flex gap-2">
             <a href="#">
               <FaFacebookSquare size={24}  />
             </a>
@@ -57,6 +57,7 @@ const Footer = () => {
 			<a href="#">
               <FaYoutube size={26}  />
             </a>
+			</div>
           </FooterList>
         </div>
       </Container>
