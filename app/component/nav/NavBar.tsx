@@ -1,4 +1,4 @@
-import Container from "../Container";
+import Container from "../../product/Container";
 import { Redressed } from "next/font/google";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });

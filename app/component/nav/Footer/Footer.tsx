@@ -1,11 +1,10 @@
-import Container from "../../Container";
+import Container from "../../../product/Container";
 import React from "react";
 import FooterList from "./FooterList";
 import { FaFacebookSquare } from "react-icons/fa";
 import { IoLogoTwitter } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
-
 
 const Footer = () => {
   return (
@@ -25,7 +24,7 @@ const Footer = () => {
             <a href="#">Contact Us</a>
             <a href="#">Shipping Policy</a>
             <a href="#">Return & Exchanges</a>
-            
+
             <a href="#">FAQ</a>
           </FooterList>
           <FooterList>
@@ -44,20 +43,20 @@ const Footer = () => {
           <FooterList>
             <h3 className="text-base font-bold mb-2">Follow Us</h3>
             <div className="flex gap-2">
-            <a href="#">
-              <FaFacebookSquare size={24}  />
-            </a>
-			<a href="#">
-              <IoLogoTwitter size={24}  />
-            </a>
-			<a href="#">
-              <FaSquareInstagram size={26}  />
-            </a>
+              <a href="#">
+                <FaFacebookSquare size={24} />
+              </a>
+              <a href="#">
+                <IoLogoTwitter size={24} />
+              </a>
+              <a href="#">
+                <FaSquareInstagram size={26} />
+              </a>
 
-			<a href="#">
-              <FaYoutube size={26}  />
-            </a>
-			</div>
+              <a href="#">
+                <FaYoutube size={26} />
+              </a>
+            </div>
           </FooterList>
         </div>
       </Container>
