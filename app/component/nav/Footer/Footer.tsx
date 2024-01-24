@@ -1,4 +1,4 @@
-import Container from "../../../product/Container";
+import Container from "../../Products/Container";
 import React from "react";
 import FooterList from "./FooterList";
 import { FaFacebookSquare } from "react-icons/fa";

@@ -3,7 +3,7 @@
 import { IconType } from "react-icons";
 
 interface ButtonProps {
-	label: string, 
+	label: string;
 	disabled?: boolean;
 	outline?: boolean;
 	small?: boolean;
@@ -13,17 +13,17 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-	
+	label,
 	disabled,
 	outline,
 	custom,
 	icon: Icon,
-	onClick,
 	small,
-    label,
+	onClick,
 }) => {
 	return (
 		<button
+			onClick={onClick}
 			disabled={disabled}
 			className={`
     disable:opacity-70
@@ -35,12 +35,14 @@ const Button: React.FC<ButtonProps> = ({
     border-slate-700
     flex
     items-center
+	justify-center
     gap-2
     ${outline ? "bg-white" : "bg-slate-700"}
     ${outline ? "text-slate-700" : "text-white"}
     ${small ? "text-sm font-light" : "text-md font-semibold"}
     ${small ? "py-1 px-2 border-[1px]" : "py-3 px-4 border-2"}
     ${custom ? custom : ""}`}>
+			{label}
 			{Icon && <Icon size={24} />}
 		</button>
 	);

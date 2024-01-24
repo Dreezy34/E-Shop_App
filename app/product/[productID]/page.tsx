@@ -1,4 +1,4 @@
-import Container from "@/app/product/Container";
+import Container from "@/app/component/Products/Container";
 
 import ProductDetails from "./ProductDetails";
 import { product } from "@/app/component/utilities/product";
@@ -14,7 +14,7 @@ const Product = ({ params }: { params: IPrams }) => {
 			<Container>
 				<ProductDetails product={product} />
 				<div className="flex flex-col mt-20 gap-4">Add Rating</div>
-				<ListRating product={product}/>
+				<ListRating product={product} />
 			</Container>
 		</div>
 	);
