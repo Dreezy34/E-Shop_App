@@ -13,7 +13,7 @@ interface ItemContentProps {
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
-	const { handleRemoveProductFromCart } = useCart();
+	const { handleRemoveProductFromCart, handleCartQtyIncrease, handleCartQtyDecrease } = useCart();
 	return (
 		<div
 			className="
@@ -33,7 +33,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
             flex
             gap-2
             md:gap-4">
-				<Link href={`/produc/${item.id}`}>
+				<Link href={`/product/${item.id}`}>
 					<div className="relative w-[70px] aspect-square">
 						<Image
 							src={item.selectedImg.image}
@@ -61,8 +61,10 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
 				<SetQuantity
 					cartCounter={true}
 					cartProduct={item}
-					handleQtyDecrease={() => {}}
-					handleQtyIncrease={() => {}}
+					handleQtyDecrease={() => {handleCartQtyDecrease(item)}}
+					handleQtyIncrease={() => {
+						handleCartQtyIncrease(item);
+					}}
 				/>
 			</div>
 			<div className="justify-self-end font-semibold">

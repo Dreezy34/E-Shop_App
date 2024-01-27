@@ -60,7 +60,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 				setIsProductInCart(true);
 			}
 		}
-	}, [cartProducts]);
+	}, [cartProducts, product.id]);
 
 	const ProductRating =
 		product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -73,7 +73,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 				return { ...prev, selectedImg: value };
 			});
 		},
-		[cartProduct.selectedImg],
+		[],
 	);
 
 	const handleQtyIncrease = useCallback(() => {

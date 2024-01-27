@@ -1,5 +1,4 @@
 "use client";
-import { error } from "console";
 import {
 	createContext,
 	useCallback,
@@ -11,11 +10,15 @@ import { CartProductType } from "../product/[productID]/ProductDetails";
 import { toast } from "react-hot-toast";
 
 type CartContextType = {
-	id: string;
+	cartTotalAmount:number;
 	cartTotalQty: number;
 	cartProducts: CartProductType[] | null;
 	handleAddProductToCart: (product: CartProductType) => void;
 	handleRemoveProductFromCart: (product: CartProductType) => void;
+
+	handleCartQtyIncrease: (product: CartProductType) => void;
+	handleCartQtyDecrease: (product: CartProductType) => void;
+	handleClearCart: () => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -24,11 +27,18 @@ interface Props {
 	[propName: string]: any;
 }
 
-export const CartContextProvider = (props: Props) => {
-	const [cartTotalQty, setCartTotalQty] = useState(0);
+export const CartContextProvider: React.FC<Props> = (props: Props) => {
+	const [cartTotalQty, setCartTotalQty] = useState(10);
+	const [cartTotalAmount, setCartTotalAmount]=useState(0)
 	const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
 		null,
 	);
+
+	useEffect(() => {
+		const cartItems: any = localStorage.getItem("eShopCartItems");
+		const cProducts: CartProductType[] | null = JSON.parse(cartItems);
+		setCartProducts(cProducts);
+	}, []);
 	const handleAddProductToCart = useCallback((product: CartProductType) => {
 		setCartProducts((prev) => {
 			let updatedCart;
@@ -39,19 +49,40 @@ export const CartContextProvider = (props: Props) => {
 			}
 			toast.success("Product added to cart");
 			localStorage.setItem("eShopCartItems", JSON.stringify(updatedCart));
-
 			return updatedCart;
 		});
 	}, []);
 
-	const handleremoveProductFromCart = useCallback(
-		(product: CartContextType) => {
+	useEffect(() => {
+		const getTotals = () => {
+			if (cartProducts){
+			const {total, qty}=cartProducts?.reduce(
+				(acc, item) => {
+					const itemTotal = item.price * item.quantity;
+					acc.total += itemTotal;
+					acc.qty += item.quantity;
+					return acc;
+				},
+				{
+					total: 0,
+					qty: 0,
+				},
+			);
+			setCartTotalQty(qty)
+			setCartTotalAmount(total)
+		};
+	}
+		getTotals();
+	}, [cartProducts]);
+
+	const handleRemoveProductFromCart = useCallback(
+		(product: CartProductType) => {
 			if (cartProducts) {
 				const filteredProducts = cartProducts.filter((item) => {
 					return item.id !== product.id;
 				});
 				setCartProducts(filteredProducts);
-				toast.succes("Product added to cart");
+				toast.success("Product removed from cart");
 				localStorage.setItem(
 					"eShopCartItems",
 					JSON.stringify(filteredProducts),
@@ -61,10 +92,65 @@ export const CartContextProvider = (props: Props) => {
 		[cartProducts],
 	);
 
+	const handleCartQtyIncrease = useCallback(
+		(product: CartProductType) => {
+			let updatedCart;
+			if (product.quantity === 99) {
+				return toast.error("Ooops! Maximum reach");
+			}
+			if (cartProducts) {
+				updatedCart = [...cartProducts];
+				const existingIndex = cartProducts.findIndex(
+					(item) => item.id === product.id,
+				);
+				if (existingIndex > -1) {
+					updatedCart[existingIndex].quantity = ++updatedCart[existingIndex]
+						.quantity;
+				}
+				setCartProducts(updatedCart);
+				localStorage.setItem("eShopCartItem", JSON.stringify(updatedCart));
+			}
+		},
+		[cartProducts],
+	);
+
+	const handleCartQtyDecrease = useCallback(
+		(product: CartProductType) => {
+			let updatedCart;
+			if (product.quantity === 1) {
+				return toast.error("Ooops! Maximum reach");
+			}
+			if (cartProducts) {
+				updatedCart = [...cartProducts];
+				const existingIndex = cartProducts.findIndex(
+					(item) => item.id === product.id,
+				);
+				if (existingIndex > -1) {
+					updatedCart[existingIndex].quantity = --updatedCart[existingIndex]
+						.quantity;
+				}
+				setCartProducts(updatedCart);
+				localStorage.setItem("eShopCartItem", JSON.stringify(updatedCart));
+			}
+		},
+		[cartProducts],
+	);
+	const handleClearCart = useCallback(() => {
+		setCartProducts(null);
+		setCartTotalQty(0);
+
+		localStorage.setItem("eShopCartItem", JSON.stringify(null));
+	}, [cartProducts]);
+
 	const value = {
 		cartTotalQty,
 		cartProducts,
 		handleAddProductToCart,
+		handleRemoveProductFromCart,
+		handleCartQtyIncrease,
+		handleCartQtyDecrease,
+		handleClearCart,
+		cartTotalAmount,
 	};
 
 	return (
