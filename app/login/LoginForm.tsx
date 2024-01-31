@@ -58,7 +58,7 @@ const LoginForm = () => {
 				Do not have an account?{" "}
 				<a
 					className="underline"
-					href="/Register">
+					href="/api/register">
 					{" "}
 					Sign Up
 				</a>

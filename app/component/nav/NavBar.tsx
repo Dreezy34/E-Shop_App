@@ -1,25 +1,48 @@
 import Container from "../Products/Container";
 import { Redressed } from "next/font/google";
 import CartCount from "./CartCount";
+import Link from "next/link";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
 const NavBar = () => {
   return (
-    <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm">
-      <div className="py-4 border-b-[1px">
+    <div
+      className="
+  sticky
+  top-0
+  w-full
+  bg-slate-200
+  z-30
+  shadow-sm
+  "
+    >
+      <div className="py-4 border-b-[1px]">
         <Container>
-          <div className="flex items-center justify-between gap-3 md:gap-0">
-            <a href="/" className={`${redressed.className} font-bold text-2xl`}>
+          <div
+            className="
+          flex
+          items-center
+          justify-between
+          gap-3
+          md:gap-0
+          "
+          >
+            <Link
+              href="/"
+              className={`${redressed.className} font-bold text-2xl`}
+            >
               E-Shop
-            </a>{" "}
-            <div className="hidden md:block">Search bar</div>
-            <div className="flex items=center-gap-8 md:gap-12"></div>
-            <CartCount />
-            <div>Usermenu</div>
+            </Link>
+            <div className="hidden md:block"></div>
+            <div className="flex items-center gap-8 md:gap-12">
+              <CartCount />
+              <div>UserMenu</div>
+            </div>
           </div>
         </Container>
       </div>
+    
     </div>
   );
 };
