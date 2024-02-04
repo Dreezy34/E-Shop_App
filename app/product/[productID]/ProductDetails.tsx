@@ -1,12 +1,12 @@
 "use client";
 import SetColor from "@/app/component/Products/SetColor";
-import { product } from "@/app/component/utilities/product";
+
 import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import SetQuantity from "../SetQuantity";
 import Button from "@/app/component/Products/Button";
 import ProductImages from "../ProductImages";
-import { useCart } from "@/app/Hook/useCart";
+import { useCart } from "@/Hook/useCart";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
@@ -67,14 +67,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 		product.reviews.length;
 	product.reviews.length;
 
-	const handleColorSelect = useCallback(
-		(value: SelectedImgType) => {
-			setCartProduct((prev) => {
-				return { ...prev, selectedImg: value };
-			});
-		},
-		[],
-	);
+	const handleColorSelect = useCallback((value: SelectedImgType) => {
+		setCartProduct((prev) => {
+			return { ...prev, selectedImg: value };
+		});
+	}, []);
 
 	const handleQtyIncrease = useCallback(() => {
 		setCartProduct((prev) => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { useCart } from "../Hook/useCart";
+import { useCart } from "../../Hook/useCart";
 import { MdArrowBack } from "react-icons/md";
 import Heading from "../component/Heading";
 import Button from "../component/Products/Button";

@@ -6,14 +6,18 @@ import Link from "next/link";
 import { truncateText } from "../component/utilities/truncateText";
 import Image from "next/image";
 import SetQuantity from "../product/SetQuantity";
-import { useCart } from "../Hook/useCart";
+import { useCart } from "../../Hook/useCart";
 
 interface ItemContentProps {
 	item: CartProductType;
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
-	const { handleRemoveProductFromCart, handleCartQtyIncrease, handleCartQtyDecrease } = useCart();
+	const {
+		handleRemoveProductFromCart,
+		handleCartQtyIncrease,
+		handleCartQtyDecrease,
+	} = useCart();
 	return (
 		<div
 			className="
@@ -61,7 +65,9 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
 				<SetQuantity
 					cartCounter={true}
 					cartProduct={item}
-					handleQtyDecrease={() => {handleCartQtyDecrease(item)}}
+					handleQtyDecrease={() => {
+						handleCartQtyDecrease(item);
+					}}
 					handleQtyIncrease={() => {
 						handleCartQtyIncrease(item);
 					}}

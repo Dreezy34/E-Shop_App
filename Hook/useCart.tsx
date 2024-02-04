@@ -6,11 +6,11 @@ import {
 	useState,
 	useEffect,
 } from "react";
-import { CartProductType } from "../product/[productID]/ProductDetails";
+import { CartProductType } from "../app/product/[productID]/ProductDetails";
 import { toast } from "react-hot-toast";
 
 type CartContextType = {
-	cartTotalAmount:number;
+	cartTotalAmount: number;
 	cartTotalQty: number;
 	cartProducts: CartProductType[] | null;
 	handleAddProductToCart: (product: CartProductType) => void;
@@ -19,6 +19,8 @@ type CartContextType = {
 	handleCartQtyIncrease: (product: CartProductType) => void;
 	handleCartQtyDecrease: (product: CartProductType) => void;
 	handleClearCart: () => void;
+	paymentIntent: string | null;
+	handleSetPaymentIntent: (val: string | null) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -29,16 +31,24 @@ interface Props {
 
 export const CartContextProvider: React.FC<Props> = (props: Props) => {
 	const [cartTotalQty, setCartTotalQty] = useState(10);
-	const [cartTotalAmount, setCartTotalAmount]=useState(0)
+	const [cartTotalAmount, setCartTotalAmount] = useState(0);
 	const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
 		null,
 	);
 
+	const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
+
 	useEffect(() => {
 		const cartItems: any = localStorage.getItem("eShopCartItems");
 		const cProducts: CartProductType[] | null = JSON.parse(cartItems);
+
+		const eShopPymentIntent: any = localStorage.getItem("eShopPaymentIntent");
+		const paymentIntent: string | null = JSON.parse(eShopPymentIntent);
+
 		setCartProducts(cProducts);
+		setPaymentIntent(paymentIntent);
 	}, []);
+
 	const handleAddProductToCart = useCallback((product: CartProductType) => {
 		setCartProducts((prev) => {
 			let updatedCart;
@@ -55,23 +65,23 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
 
 	useEffect(() => {
 		const getTotals = () => {
-			if (cartProducts){
-			const {total, qty}=cartProducts?.reduce(
-				(acc, item) => {
-					const itemTotal = item.price * item.quantity;
-					acc.total += itemTotal;
-					acc.qty += item.quantity;
-					return acc;
-				},
-				{
-					total: 0,
-					qty: 0,
-				},
-			);
-			setCartTotalQty(qty)
-			setCartTotalAmount(total)
+			if (cartProducts) {
+				const { total, qty } = cartProducts?.reduce(
+					(acc, item) => {
+						const itemTotal = item.price * item.quantity;
+						acc.total += itemTotal;
+						acc.qty += item.quantity;
+						return acc;
+					},
+					{
+						total: 0,
+						qty: 0,
+					},
+				);
+				setCartTotalQty(qty);
+				setCartTotalAmount(total);
+			}
 		};
-	}
 		getTotals();
 	}, [cartProducts]);
 
@@ -142,6 +152,14 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
 		localStorage.setItem("eShopCartItem", JSON.stringify(null));
 	}, [cartProducts]);
 
+	const handleSetPaymentIntent = useCallback(
+		(val: string | null) => {
+			setPaymentIntent(val);
+			localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
+		},
+		[paymentIntent],
+	);
+
 	const value = {
 		cartTotalQty,
 		cartProducts,
@@ -151,6 +169,8 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
 		handleCartQtyDecrease,
 		handleClearCart,
 		cartTotalAmount,
+		paymentIntent,
+		handleSetPaymentIntent,
 	};
 
 	return (
