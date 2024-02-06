@@ -11,6 +11,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { formatprice } from "../../utilities/formatprice";
 import toast from "react-hot-toast";
 import Heading from "../component/Heading";
+import Button from "../component/Products/Button";
 
 interface CheckOutFormProps {
 	clientSecret: string;
@@ -35,7 +36,7 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
 			return;
 		}
 		handleSetPaymentSuccess(false);
-	}, [stripe]);
+	}, [clientSecret, handleSetPaymentSuccess, stripe]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -67,12 +68,20 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
 			</div>
 			<h2 className="font-semibold mb-2">Address Information</h2>
 			<AddressElement
-				options={{ mode: "shipping", allowedCountries: ["Africa", "USA"] }}
+				options={{ mode: "shipping", allowedCountries: ["World", "USA"] }}
 			/>
 			<h2 className="font-semibold mt-4 mb-2">Payment Information</h2>
 			<PaymentElement
 				id="payment-element"
 				options={{ layout: "tabs" }}
+			/>
+			<div className="py-4 text-center text-slate-700 text-xl font-bold">
+				Total: {formattedPrice}
+			</div>
+			<Button
+				label={isLoading? "Processing" : "Pay now"}
+				disabled={isLoading || !stripe || !elements}
+				onClick={() => {}}
 			/>
 		</form>
 	);

@@ -35,14 +35,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/cart");
+			router.push("/Cart");
 			router.refresh();
 		}
-	}, []);
+	}, [currentUser, router]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
-		console.log("infohere", data);
+		console.log("info here", data);
 
 		axios
 			.post("/api/register", data)

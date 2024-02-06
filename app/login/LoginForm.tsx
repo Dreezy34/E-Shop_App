@@ -33,16 +33,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/cart");
+			router.push("/Cart");
 			router.refresh();
 		}
 	}, []);
-	const OnSubmit: SubmitHandler<FieldValues> = () => {
+	const OnSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
 		signIn("credentials", { ...data, redirect: false }).then((callback) => {
 			setIsLoading(false);
 			if (callback?.ok) {
-				router.push("/cart");
+				router.push("/Cart");
 				router.refresh();
 				toast.success("Logged In");
 			}

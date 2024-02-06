@@ -30,7 +30,7 @@ interface Props {
 }
 
 export const CartContextProvider: React.FC<Props> = (props: Props) => {
-	const [cartTotalQty, setCartTotalQty] = useState(10);
+	const [cartTotalQty, setCartTotalQty] = useState(0);
 	const [cartTotalAmount, setCartTotalAmount] = useState(0);
 	const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
 		null,
@@ -156,9 +156,7 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
 		(val: string | null) => {
 			setPaymentIntent(val);
 			localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
-		},
-		[paymentIntent],
-	);
+		},[paymentIntent]);
 
 	const value = {
 		cartTotalQty,
