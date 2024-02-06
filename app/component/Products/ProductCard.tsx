@@ -2,8 +2,8 @@
 
 import { truncate } from "fs";
 import Image from "next/image";
-import { truncateText } from "../utilities/truncateText";
-import { formatprice } from "../utilities/formatprice";
+import { truncateText } from "../../../utilities/truncateText";
+import { formatprice } from "../../../utilities/formatprice";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
 

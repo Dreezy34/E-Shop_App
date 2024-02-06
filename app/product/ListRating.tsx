@@ -2,7 +2,7 @@
 
 import moment from "moment";
 import Heading from "../component/Heading";
-import { product } from "../component/utilities/product";
+import { product } from "../../utilities/product";
 import { Avatar, Rating } from "@mui/material";
 
 interface ListRatingProps {

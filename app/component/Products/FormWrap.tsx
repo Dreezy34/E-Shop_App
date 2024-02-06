@@ -6,6 +6,7 @@ const FormWrap = ({ children }: { children: React.ReactNode }) => {
 			className="
         min-h-fit
         h-full
+        flex
         items-center
         justify-center
         pb-12
@@ -19,6 +20,7 @@ const FormWrap = ({ children }: { children: React.ReactNode }) => {
             items-center
             shadow-xl
             shadow-slate-200
+            rounded-md
             p-4
             md:p-8">
 				{children}

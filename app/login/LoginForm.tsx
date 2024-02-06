@@ -33,7 +33,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/Cart");
+			router.push("/cart");
 			router.refresh();
 		}
 	}, []);
@@ -93,7 +93,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 				Do not have an account?{" "}
 				<Link
 					className="underline"
-					href="/api/register">
+					href="/register">
 					{" "}
 					Sign Up
 				</Link>

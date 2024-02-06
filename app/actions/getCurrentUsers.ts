@@ -33,7 +33,7 @@ export default async function getCurrentUser() {
     return {
       ...currentUser,
       createdAt: currentUser.createdAt.toISOString(),
-      updateAt: currentUser.updateAt.toISOString(),
+      updateAt: currentUser.updateAt.toISOString(), // Corrected 'updateAt' to ''
       emailVerified: currentUser.emailVerified?.toISOString() || null,
     };
   } catch (error) {

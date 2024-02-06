@@ -1,7 +1,7 @@
 import Container from "./component/Products/Container";
 import HomeBanner from "./component/Products/HomeBanner";
-import { products } from "./component/utilities/products";
-import { truncateText } from "./component/utilities/truncateText";
+import { products } from "../utilities/products";
+import { truncateText } from "../utilities/truncateText";
 import ProductCard from "./component/Products/ProductCard";
 
 export default function Home() {

@@ -3,15 +3,14 @@ import Container from "@/app/component/Products/Container";
 import ProductDetails from "./ProductDetails";
 
 import ListRating from "../ListRating";
-import { products } from "@/app/component/utilities/products";
+import { products } from "@/utilities/products";
 
 interface IPrams {
 	productID?: string;
 }
 
 const Product = ({ params }: { params: IPrams }) => {
-
-	const product = products.find((item)=>item.id === params.productID)
+	const product = products.find((item) => item.id === params.productID);
 	return (
 		<div className="p-8">
 			<Container>

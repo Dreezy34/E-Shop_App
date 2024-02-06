@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { CartProductType } from "../product/[productID]/ProductDetails";
-import { formatprice } from "../component/utilities/formatprice";
+import { formatprice } from "../../utilities/formatprice";
 import Link from "next/link";
-import { truncateText } from "../component/utilities/truncateText";
+import { truncateText } from "../../utilities/truncateText";
 import Image from "next/image";
 import SetQuantity from "../product/SetQuantity";
 import { useCart } from "../../Hook/useCart";
