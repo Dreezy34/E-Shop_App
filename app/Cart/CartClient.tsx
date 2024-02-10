@@ -11,7 +11,7 @@ import { formatprice } from "../../utilities/formatprice";
 import { SafeUser } from "@/types";
 import { useRouter } from "next/navigation";
 
-interface CartClientProps{
+interface CartClientProps {
 	currentUser: SafeUser | null;
 }
 

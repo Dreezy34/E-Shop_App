@@ -26,7 +26,7 @@ const CheckOutClient = () => {
 
 	useEffect(() => {
 		if (cartProducts) {
-			setLoading(true); 
+			setLoading(true);
 			setError(false);
 
 			fetch("/api/create-payment-intent", {

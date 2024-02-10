@@ -79,7 +79,7 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
 				Total: {formattedPrice}
 			</div>
 			<Button
-				label={isLoading? "Processing" : "Pay now"}
+				label={isLoading ? "Processing" : "Pay now"}
 				disabled={isLoading || !stripe || !elements}
 				onClick={() => {}}
 			/>
