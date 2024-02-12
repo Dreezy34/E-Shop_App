@@ -4,6 +4,8 @@ import CartCount from "./CartCount";
 import Link from "next/link";
 import getCurrentUser from "@/app/actions/getCurrentUsers";
 import UserMenu from "./UserMenu";
+import Categories from "./Categories";
+import SearchBar from "./SearchBar";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
@@ -38,7 +40,9 @@ const NavBar = async () => {
             >
               E-Shop
             </Link>
-            <div className="hidden md:block">Serachbar</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />
@@ -46,6 +50,7 @@ const NavBar = async () => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };
