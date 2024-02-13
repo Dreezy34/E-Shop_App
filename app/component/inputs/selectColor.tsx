@@ -2,7 +2,7 @@
 
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
 import { useCallback, useEffect, useState } from "react";
-// import SelectImage from "./SelectImage";
+
 import Button from "../Products/Button";
 import SelectImage from "./SelectImage";
 
