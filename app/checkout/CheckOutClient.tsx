@@ -6,18 +6,18 @@ import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import CheckOutForm from "./CheckOutForm";
+import CheckoutForm from "./CheckoutForm";
 import Button from "../component/Products/Button";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
 
-const CheckOutClient = () => {
+const CheckoutClient = () => {
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [clientSecret, setClientSecret] = useState();
+  const [clientSecret, setClientSecret] = useState("");
   const [paymentSucess, setPaymentSuccess] = useState(false);
 
   const router = useRouter();
@@ -72,7 +72,7 @@ const CheckOutClient = () => {
     <div className="w-full">
       {clientSecret && cartProducts && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckOutForm
+          <CheckoutForm
             clientSecret={clientSecret}
             handleSetPaymentSuccess={handleSetPaymentSuccess}
           />
@@ -84,7 +84,9 @@ const CheckOutClient = () => {
       )}
       {paymentSucess && (
         <div className="flex items-center flex-col gap-4">
-          <div className="text-teal-500 text-center">Payment Success</div>
+          <div className="text-teal-500 font-semibold text-center">
+            Payment Success
+          </div>
           <div className="max-w-[220px] w-full">
             <Button
               label="View Your Orders"
@@ -97,4 +99,4 @@ const CheckOutClient = () => {
   );
 };
 
-export default CheckOutClient;
+export default CheckoutClient;

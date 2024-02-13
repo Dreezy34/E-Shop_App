@@ -3,34 +3,34 @@
 import { UseFormRegister, FieldValues, FieldErrors } from "react-hook-form";
 
 interface InputProps {
-	id: string;
-	label: string;
-	type?: string;
-	disabled?: boolean;
-	required?: boolean;
-	register: UseFormRegister<FieldValues>;
-	errors: FieldErrors;
+  id: string;
+  label: string;
+  type?: string;
+  disabled?: boolean;
+  required?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
 const Input: React.FC<InputProps> = ({
-	id,
-	label,
-	type,
-	disabled,
-	required,
-	register,
-	errors,
+  id,
+  label,
+  type,
+  disabled,
+  required,
+  register,
+  errors,
 }) => {
-	return (
-		<div className="w-full relative">
-			<input
-				autoComplete="off"
-				id={id}
-				disabled={disabled}
-				{...register(id, { required })}
-				placeholder=""
-				type={type}
-				className={`
+  return (
+    <div className="w-full relative">
+      <input
+        autoComplete="off"
+        id={id}
+        disabled={disabled}
+        {...register(id, { required })}
+        placeholder=""
+        type={type}
+        className={`
       peer
       w-full
       p-4
@@ -46,10 +46,10 @@ const Input: React.FC<InputProps> = ({
       ${errors[id] ? "border-rose-400" : "border-slate-300"}
       ${errors[id] ? "focus:border-rose-400" : "focus:border-slate-300"}
       `}
-			/>
-			<label
-				htmlFor={id}
-				className={`absolute
+      />
+      <label
+        htmlFor={id}
+        className={`absolute
       cursor-text
       text-md
       duration-150
@@ -64,11 +64,12 @@ const Input: React.FC<InputProps> = ({
       peer-focus:scale-75
       peer-focus:-translate-y-4
       ${errors[id] ? "text-rose-500" : "text-slate-400"}
-  `}>
-				{label}
-			</label>
-		</div>
-	);
+  `}
+      >
+        {label}
+      </label>
+    </div>
+  );
 };
 
 export default Input;
