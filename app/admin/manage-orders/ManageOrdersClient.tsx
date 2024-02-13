@@ -171,7 +171,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 				toast.error("Oops! Something went wrong");
 				console.log(err);
 			});
-	}, []);
+	}, [router]);
 
 	const handleDeliver = useCallback((id: string) => {
 		axios
@@ -187,7 +187,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 				toast.error("Oops! Something went wrong");
 				console.log(err);
 			});
-	}, []);
+	}, [router]);
 
 	return (
 		<div className="max-w-[1150px] m-auto text-xl">

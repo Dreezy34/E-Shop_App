@@ -61,6 +61,7 @@ const AddProductForm = () => {
 
 	useEffect(() => {
 		setCustomValue("images", images);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [images]);
 
 	useEffect(() => {

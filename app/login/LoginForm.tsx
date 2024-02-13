@@ -14,95 +14,94 @@ import toast from "react-hot-toast";
 import { SafeUser } from "@/types";
 
 interface LoginFormProps {
-	currentUser: SafeUser | null;
+  currentUser: SafeUser | null;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FieldValues>({
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-	});
-	const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const router = useRouter();
 
-	useEffect(() => {
-		if (currentUser) {
-			router.push("/Cart");
-			router.refresh();
-		}
-	}, []);
-	const OnSubmit: SubmitHandler<FieldValues> = (data) => {
-		setIsLoading(true);
-		signIn("credentials", { ...data, redirect: false }).then((callback) => {
-			setIsLoading(false);
-			if (callback?.ok) {
-				router.push("/Cart");
-				router.refresh();
-				toast.success("Logged In");
-			}
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/Cart");
+      router.refresh();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const OnSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+    signIn("credentials", { ...data, redirect: false }).then((callback) => {
+      setIsLoading(false);
+      if (callback?.ok) {
+        router.push("/Cart");
+        router.refresh();
+        toast.success("Logged In");
+      }
 
-			if (callback?.error) {
-				toast.error(callback.error);
-			}
-		});
-	};
-	if (currentUser) {
-		return <p className="text-center">Logged in. Redirecting...</p>;
-	}
-	return (
-		<>
-			<Heading title="Sign in to E-shop" />
-			<Button
-				outline
-				label="Continue with Google"
-				icon={AiOutlineGoogle}
-				onClick={() => {
-					signIn("google");
-				}}
-			/>
-			<hr className="bg-slate-300 w-full h-px" />
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
+  };
+  if (currentUser) {
+    return <p className="text-center">Logged in. Redirecting...</p>;
+  }
+  return (
+    <>
+      <Heading title="Sign in to E-shop" />
+      <Button
+        outline
+        label="Continue with Google"
+        icon={AiOutlineGoogle}
+        onClick={() => {
+          signIn("google");
+        }}
+      />
+      <hr className="bg-slate-300 w-full h-px" />
 
-			<Input
-				id="email"
-				label="Email"
-				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
-			/>
-			<Input
-				id="password"
-				label="Password"
-				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
-				type="password"
-			/>
-			<Button
-				label={isLoading ? "Loading" : "Login"}
-				onClick={handleSubmit(OnSubmit)}
-			/>
-			<p className="text-sm">
-				Do not have an account?{" "}
-				<Link
-					className="underline"
-					href="/register">
-					{" "}
-					Sign Up
-				</Link>
-			</p>
-		</>
-	);
+      <Input
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="password"
+        label="Password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type="password"
+      />
+      <Button
+        label={isLoading ? "Loading" : "Login"}
+        onClick={handleSubmit(OnSubmit)}
+      />
+      <p className="text-sm">
+        Do not have an account?{" "}
+        <Link className="underline" href="/register">
+          {" "}
+          Sign Up
+        </Link>
+      </p>
+    </>
+  );
 };
 
 export default LoginForm;
 function SignIn(arg0: string) {
-	throw new Error("Function not implemented.");
+  throw new Error("Function not implemented.");
 }

@@ -150,6 +150,7 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
     setCartTotalQty(0);
 
     localStorage.setItem("eShopCartItem", JSON.stringify(null));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartProducts]);
 
   const handleSetPaymentIntent = useCallback(
@@ -157,6 +158,7 @@ export const CartContextProvider: React.FC<Props> = (props: Props) => {
       setPaymentIntent(val);
       localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [paymentIntent]
   );
 
