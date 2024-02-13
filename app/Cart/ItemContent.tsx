@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { CartProductType } from "../product/ProductDetails";
+import { CartProductType } from "../product/[productId]/ProductDetails";
 import { formatprice } from "../../utilities/formatprice";
 import Link from "next/link";
 import { truncateText } from "../../utilities/truncateText";

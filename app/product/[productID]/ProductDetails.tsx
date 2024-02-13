@@ -3,9 +3,9 @@ import SetColor from "@/app/component/Products/SetColor";
 
 import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import SetQuantity from "../component/Products/SetQuantity";
+import SetQuantity from "../../component/Products/SetQuantity";
 import Button from "@/app/component/Products/Button";
-import ProductImages from "../component/Products/ProductImages";
+import ProductImages from "../../component/Products/ProductImages";
 import { useCart } from "@/Hook/useCart";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
