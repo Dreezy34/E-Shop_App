@@ -6,7 +6,7 @@ import {
   useState,
   useEffect,
 } from "react";
-import { CartProductType } from "../app/product/[productId]/ProductDetails";
+import { CartProductType } from "../app/product/ProductDetails";
 import { toast } from "react-hot-toast";
 
 type CartContextType = {
